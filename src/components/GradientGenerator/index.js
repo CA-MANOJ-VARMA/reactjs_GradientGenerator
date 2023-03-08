@@ -4,6 +4,8 @@ import {
   ColorInput,
   ColorInputContainers,
   GenerateButton,
+  BgContainer,
+  UlListContainer,
 } from './styledComponents'
 
 const gradientDirectionsList = [
@@ -31,17 +33,24 @@ class GradientGenerator extends Component {
   render() {
     const {firstColor, secondColor, direction} = this.state
     return (
-      <div>
+      <BgContainer
+        firstColor={firstColor}
+        secondColor={secondColor}
+        direction={direction}
+      >
         <h1>Generate a CSS Color Gradient</h1>
         <p>Choose Direction</p>
-        {gradientDirectionsList.map(eachItem => (
-          <GradientDirectionItem
-            key={eachItem.directionId}
-            eachItem={eachItem}
-            directionFunction={this.directionFunction}
-            direction={direction}
-          />
-        ))}
+        <UlListContainer>
+          {gradientDirectionsList.map(eachItem => (
+            <li key={eachItem.directionId}>
+              <GradientDirectionItem
+                eachItem={eachItem}
+                directionFunction={this.directionFunction}
+                direction={direction}
+              />
+            </li>
+          ))}
+        </UlListContainer>
         <p>Pick the Colors</p>
         <ColorInputContainers>
           <ColorInput>
@@ -64,7 +73,7 @@ class GradientGenerator extends Component {
           </ColorInput>
         </ColorInputContainers>
         <GenerateButton>Generate</GenerateButton>
-      </div>
+      </BgContainer>
     )
   }
 }

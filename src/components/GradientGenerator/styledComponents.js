@@ -1,6 +1,18 @@
 // Style your elements here
 import styled from 'styled-components'
 
+export const BgContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  background-image: linear-gradient(
+    to ${props => props.direction},
+    ${props => props.firstColor},
+    ${props => props.secondColor}
+  );
+`
+
 export const ColorInput = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,4 +35,10 @@ export const GenerateButton = styled.button`
   :hover {
     cursor: pointer;
   }
+`
+export const UlListContainer = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
 `

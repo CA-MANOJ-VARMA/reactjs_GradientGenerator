@@ -16,7 +16,14 @@ const gradientDirectionsList = [
 ]
 // Write your code here
 class GradientGenerator extends Component {
-  state = {firstColor: '#8ae323', secondColor: '#014f7b', direction: 'Top'}
+  state = {
+    firstColor: '#8ae323',
+    firstColorApplied: '#8ae323',
+    secondColorApplied: '#014f7b',
+    secondColor: '#014f7b',
+    direction: 'top',
+    directionApplied: 'top',
+  }
 
   onChangeFirstColor = event => {
     this.setState({firstColor: event.target.value})
@@ -30,13 +37,31 @@ class GradientGenerator extends Component {
     this.setState({direction: selected})
   }
 
-  render() {
+  generateFunction = () => {
     const {firstColor, secondColor, direction} = this.state
+    this.setState({
+      firstColorApplied: firstColor,
+      secondColorApplied: secondColor,
+      directionApplied: direction,
+    })
+  }
+
+  render() {
+    const {
+      firstColor,
+      firstColorApplied,
+      secondColor,
+      secondColorApplied,
+      direction,
+      directionApplied,
+    } = this.state
+    console.log(firstColorApplied, secondColorApplied)
     return (
       <BgContainer
-        firstColor={firstColor}
-        secondColor={secondColor}
-        direction={direction}
+        firstColor={firstColorApplied}
+        secondColor={secondColorApplied}
+        direction={directionApplied}
+        data-testid="gradientGenerator"
       >
         <h1>Generate a CSS Color Gradient</h1>
         <p>Choose Direction</p>
@@ -54,7 +79,9 @@ class GradientGenerator extends Component {
         <p>Pick the Colors</p>
         <ColorInputContainers>
           <ColorInput>
-            <label htmlFor="firstcolor">{firstColor}</label>
+            <label htmlFor="firstcolor">
+              <p>{firstColor}</p>
+            </label>
             <input
               type="color"
               id="firstcolor"
@@ -63,7 +90,9 @@ class GradientGenerator extends Component {
             />
           </ColorInput>
           <ColorInput>
-            <label htmlFor="secondColor">{secondColor}</label>
+            <label htmlFor="secondColor">
+              <p>{secondColor}</p>
+            </label>
             <input
               type="color"
               id="secondColor"
@@ -72,7 +101,9 @@ class GradientGenerator extends Component {
             />
           </ColorInput>
         </ColorInputContainers>
-        <GenerateButton>Generate</GenerateButton>
+        <GenerateButton onClick={this.generateFunction}>
+          Generate
+        </GenerateButton>
       </BgContainer>
     )
   }

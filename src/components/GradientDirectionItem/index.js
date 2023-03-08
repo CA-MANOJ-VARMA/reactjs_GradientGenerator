@@ -5,16 +5,16 @@ const GradientDirectionItem = props => {
   const {eachItem, directionFunction, direction} = props
   console.log('hrloo')
   console.log(direction)
-  console.log(eachItem.displayText)
-  console.log(direction === eachItem.displayText)
+  console.log(eachItem.value)
+  console.log(direction === eachItem.value)
   const onClickDirectionFunction = value => {
     directionFunction(value)
   }
 
   return (
     <DirectionButton
-      onClick={() => onClickDirectionFunction(eachItem.displayText)}
-      direction={direction === eachItem.displayText}
+      onClick={() => onClickDirectionFunction(eachItem.value)}
+      direction={direction === eachItem.value}
     >
       {eachItem.displayText}
     </DirectionButton>
